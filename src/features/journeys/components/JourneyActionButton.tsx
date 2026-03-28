@@ -1,52 +1,43 @@
 import { Box } from '@mui/material';
 //import { usePathname, useRouter } from 'next/navigation';
-import { FC /*useState*/ } from 'react';
-import { InsertDriveFileOutlined } from '@mui/icons-material';
+import { FC, useState } from 'react';
+import { ControlPoint } from '@mui/icons-material';
 
-//import ImportDialog from 'features/import/components/ImportDialog';
-//import joinFormMessageIds from 'features/joinForms/l10n/messageIds';
-//import messageIds from '../l10n/messageIds';
-//import useCreateJoinForm from 'features/joinForms/hooks/useCreateJoinForm';
-
-//import { useMessages } from 'core/i18n';
+import messageIds from '../l10n/messageIds';
+import { useMessages } from 'core/i18n';
 import ZUIButtonMenu from 'zui/ZUIButtonMenu';
-//import ZUICreatePerson from 'zui/ZUICreatePerson';
-//import zuiMessageIds from 'zui/l10n/messageIds';
+import ZUICreateJourney from 'zui/ZUICreateJourney';
+import zuiMessageIds from 'zui/l10n/messageIds';
 
 interface JourneyActionButtonProps {
   orgId: number;
 }
 
-const JourneyActionButton: FC<JourneyActionButtonProps> = ({ orgId }) => {
-  //const messages = useMessages(messageIds);
-  //const zuiMessages = useMessages(zuiMessageIds);
+const JourneyActionButton: FC<JourneyActionButtonProps> = () => {
+  const messages = useMessages(messageIds);
+  const zuiMessages = useMessages(zuiMessageIds);
 
-  //const [createPersonOpen, setCreatePersonOpen] = useState(false);
-
-  //const { createForm } = useCreateJoinForm(orgId);
+  const [createJourneyOpen, setCreateJourneyOpen] = useState(false);
 
   return (
     <Box>
       <ZUIButtonMenu
         items={[
           {
-            icon: <InsertDriveFileOutlined />,
-            label: 'Create Journey for Org ' + orgId, //TODO: add proper message
+            icon: <ControlPoint />,
+            label: messages.createJourney(),
             onClick: () => {
-              //do something
+                setCreateJourneyOpen(true);
             },
-          },
+        },
         ]}
         label={'Create'} //TODO: add proper message
-        /*
         />
-      <ZUICreatePerson
-        onClose={() => setCreatePersonOpen(false)}
-        open={createPersonOpen}
-        submitLabel={zuiMessages.createPerson.submitLabel.default()}
-        title={zuiMessages.createPerson.title.default()}
-      />
-      */
+      <ZUICreateJourney
+        onClose={() => setCreateJourneyOpen(false)}
+        open={createJourneyOpen}
+        submitLabel={zuiMessages.createJourney.submitLabel.default()}
+        title={zuiMessages.createJourney.title.default()}
       />
     </Box>
   );

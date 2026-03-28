@@ -492,6 +492,11 @@ export interface ZetkinJourney {
   title: string;
 }
 
+export type ZetkinCreateJourney = Partial<
+  Omit<ZetkinJourney, 'id' | 'organization' | 'stats'>
+> &
+  Record<string, string | null>;
+
 export interface ZetkinJourneyInstance {
   assignees: ZetkinPerson[];
   closed: string | null;

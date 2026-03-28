@@ -31,6 +31,14 @@ export default makeMessages('zui', {
     copiedValue: m<{ value: string }>('Copied "{value}"'),
     copy: m('Copy'),
   },
+  createJourney: {
+    submitLabel: {
+      default: m('Create'),
+    },
+    title: {
+      default: m('Create Journey')
+    },
+  },
   createPerson: {
     cancel: m('Cancel'),
     createBtn: m('Create'),

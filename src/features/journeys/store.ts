@@ -64,6 +64,24 @@ const journeysSlice = createSlice({
         state.timelineUpdatesByInstanceId[instanceId].isStale = true;
       }
     },
+    journeyCreate: (state) => {
+      state.journeyInstanceList.isLoading = true;
+    },
+    journeyCreated: (
+      state,
+      action: PayloadAction<ZetkinJourney>
+    ) => {
+      // TODO: Adapt this to journey, copied from instance
+      const journey = action.payload;
+      state.journeyInstanceList.isLoading = false;
+      state.journeyInstanceList.items.push(
+        remoteItem(journey.id, { data: journey })
+      );
+
+      state.journeyInstancesByJourneyId[journey.id].items.push(
+        remoteItem(journey.id, { data: journey })
+      );
+    },
     journeyInstanceCreate: (state) => {
       state.journeyInstanceList.isLoading = true;
     },
@@ -272,6 +290,8 @@ export default journeysSlice;
 export const {
   invalidateJourneyInstance,
   invalidateTimeline,
+  journeyCreate,
+  journeyCreated,
   journeyInstanceCreate,
   journeyInstanceCreated,
   journeyInstanceDeleted,

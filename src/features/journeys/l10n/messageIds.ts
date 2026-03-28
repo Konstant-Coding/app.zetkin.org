@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import { m, makeMessages } from 'core/i18n/messages';
 
 export default makeMessages('feat.journeys', {
+  createJourney: m('Create journey'),
   instance: {
     addAssigneeButton: m('Add assignee'),
     addSubjectButton: m('Add person'),
